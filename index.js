@@ -1,6 +1,5 @@
 'use strict'
 var AWS = require('aws-sdk');
-AWS.config.loadFromPath('./awsconfig.json');
 var bunyan = require('bunyan');
 var http = require('http');
 var crypto = require('crypto');
@@ -42,7 +41,7 @@ server.listen(config.server.port, (err) => {
     s3.listObjects({ Bucket: config.s3.bucket }, function (err, data) {
         if (err) {
             log.error(err, err.stack); // an error occurred
-            pricess.exit(1);
+            process.exit(1);
         } else {
             s3list = data.Contents;
         }
