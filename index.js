@@ -17,6 +17,10 @@ var log = bunyan.createLogger({
 });
 
 var server = http.createServer(function (req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+  	res.setHeader('Access-Control-Request-Method', '*');
+  	res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+  	res.setHeader('Access-Control-Allow-Headers', '*');
     log.info({ req: req }, 'start request');
     if (/\/health$/.test(req.url)) {
         res.writeHead(200, { 'Content-Type': 'text/plain' });
